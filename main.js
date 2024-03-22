@@ -85,11 +85,38 @@ var juego = new Juego();
 
 //INICIALIZACION DE FORMULARIOS
 
-if (window.location.pathname === '/index.html' && juego.jugador.nick === undefined) {
+if (window.location.pathname === '/index.html') {
     //Asignaremos nombre al "index.html" para facilitar la movilidad entre ventanas
     window.name = "formulario";
     //Abrira nueva pestaña para registrarse o iniciar sesion, si no hay usuario logeado.
-    Juego.abrirFormulario();
+    let botonEmpezar = document.getElementById('botonEmpezar');
+    botonEmpezar.addEventListener('click', function () {
+        Juego.abrirFormulario();
+
+        let contenedorInicio = document.getElementById('secInicio');
+        contenedorInicio.setAttribute('hidden', true);        
+    });
+
+    window.addEventListener('message', function (event) {
+        //Mostramos el tablero y los botones
+        let contenedorSaludos = document.getElementById('secSaludos');
+        contenedorSaludos.removeAttribute('hidden');
+        let contenedorTablero = document.getElementById('secTablero');
+        contenedorTablero.removeAttribute('hidden');
+        let contenedorBotones = document.getElementById('secbotones');
+        contenedorBotones.removeAttribute('hidden');
+
+        //Recuperaremos los datos guardados a traves del Local Storage, en forma de string
+        let jugadorString = juego.buscarJugador(event.data);
+        let tableroString = juego.buscarTablero(event.data);
+
+        //Utilizamos el metodo convertidorJSONaObj para convertir el string a un objeto
+        //Ja que con el JSON.parse no se puede acceder a los metodos privados
+        juego.jugador.convertidorJSONaObj(jugadorString);
+        juego.tablero.convertidorJSONaObj(tableroString);
+        iniciarJuego();
+
+    });
 }
 
 if (window.location.pathname === '/formulario.html') {
@@ -106,23 +133,6 @@ if (window.location.pathname === '/formulario.html') {
         menuFormularioTablero();
     }
 }
-
-if (window.location.pathname === '/index.html') {
-    window.addEventListener('message', function (event) {
-        //Recuperaremos los datos guardados a traves del Local Storage, en forma de string
-        let jugadorString = juego.buscarJugador(event.data);
-        let tableroString = juego.buscarTablero(event.data);
-
-        //Utilizamos el metodo convertidorJSONaObj para convertir el string a un objeto
-        //Ja que con el JSON.parse no se puede acceder a los metodos privados
-        juego.jugador.convertidorJSONaObj(jugadorString);
-        juego.tablero.convertidorJSONaObj(tableroString);
-        iniciarJuego();
-
-    });
-
-}
-
 
 //FUNCIONES DEL FORMULARIO Y DEL JUEGO:
 
@@ -179,8 +189,11 @@ function menuFormularioTablero() {
 }
 
 function iniciarJuego() {
-    var tablero = document.getElementById('tablero');
+    //Mostramos primero el mensaje de saludo
+    let elementoSaludo = document.getElementById('saludo');
+    juego.saludarJugador(elementoSaludo);
 
+    var tablero = document.getElementById('tablero');
     juego.crearTabla();
     juego.crearTablaDOM(tablero);
 
@@ -206,6 +219,7 @@ function iniciarJuego() {
     tablero.addEventListener('click', clickIzquierdo);
 
     tablero.addEventListener('contextmenu', clickDerecho);
+    
 
     //FUNCIONALIDADE EXTRA: BOTON REINICIAR
     var botonReiniciar = document.getElementById('reiniciar');

@@ -14,12 +14,19 @@
         <img src="src/logoMina.png" alt="mine" />
         <h1>PR3 - BUSCAMINAS</h1>
     </header>
-    <main>
-        <section>
+    <main id="juego">
+        <section id="secInicio">
+            <h2>INICIAR JUEGO:</h2>
+            <button id="botonEmpezar">Empezar</button>
+        </section>
+        <section id="secSaludos" hidden>
+            <h3 id="saludo"></h3>
+        </section>
+        <section id="secTablero" hidden>
             <h2>Tablero:</h2>
             <table id="tablero"></table>
         </section>
-        <section>
+        <section id="secbotones" hidden>
             <h2>Botones:</h2>
             <div class="botones">
                 <button id="reiniciar">Reiniciar</button>

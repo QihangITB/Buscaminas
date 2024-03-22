@@ -6,19 +6,15 @@ export class Jugador{
     nick;
     mail;
     contraseña;
-    score;
-    fechaScore;
 
-    constructor(nombre, fechaNacimiento, nick, mail, contraseña){
+    constructor(nombre, apellido, fechaNacimiento, nick, mail, contraseña){
         this.nombre = nombre;
-        this.apellido = '';
+        this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.#edad = Jugador.calcularEdad(fechaNacimiento);
         this.nick = nick;
         this.mail = mail;
         this.contraseña = contraseña;
-        this.score = 0;
-        this.fechaScore = new Date();
     }
 
     convertidorJSONaObj(string) {

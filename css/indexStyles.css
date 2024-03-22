@@ -32,14 +32,32 @@ img {
 }
 
 h1 {
+    color: white;
     text-transform: uppercase;
     font-size: 3rem;
     text-align: left;
     margin: 10px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.75);
 }
 
 h2{
     text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(98, 0, 255, 0.726);
+}
+
+h3 {
+    font-size: 1.6rem;
+    color: rgb(54, 54, 54);
+    text-align: center;
+}
+
+h3 span {
+    color: rgba(98, 0, 255, 0.9);
+}
+
+#secInicio {
+    margin-top: 100px;
+    text-align: center;
 }
 
 
@@ -50,7 +68,7 @@ h2{
     height: auto;
     margin: auto;
     padding: 3px;
-    border: 6px solid rgb(116, 5, 207);;
+    border: 6px solid rgba(98, 0, 255);;
     border-radius: 5px;
 }
 

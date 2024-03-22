@@ -13,6 +13,14 @@ export class Juego {
     //Abre una nueva ventana para el formulario
     static abrirFormulario() { window.open('formulario.html', 'Formulario', 'width=700, height=700'); }
 
+    saludarJugador(idMensaje){
+        if (this.jugador.apellido === "") {
+            idMensaje.innerHTML = `Bienvenido al Buscaminas <span>${this.jugador.nombre}</span>!`;
+        } else {
+            idMensaje.innerHTML = `Bienvenido al Buscaminas <span>${this.jugador.nombre}</span>, <span>${this.jugador.apellido}</span>!`;
+        }
+    }
+
 
     //FUNCIONES DE CONFIGURACION DE FORMULARIO
 
@@ -38,6 +46,7 @@ export class Juego {
         if (opcionEscogido === 'registrar') {
 
             var inputNombre = document.getElementById('nombre');
+            var inpuApellido = document.getElementById('apellido');
             var inputFechaNacimiento = document.getElementById('fechaNacimiento');
             var inputMail = document.getElementById('mail');
             var errorNombre = document.getElementById('errorNombre');
@@ -66,7 +75,7 @@ export class Juego {
                 return false; //Error con el formulario
 
             } else {
-                this.jugador = new Jugador(inputNombre.value, inputFechaNacimiento.value, inputNick.value, inputMail.value, inputContraseña.value);
+                this.jugador = new Jugador(inputNombre.value, inpuApellido.value, inputFechaNacimiento.value, inputNick.value, inputMail.value, inputContraseña.value);
                 this.añadirJugador();
 
                 return true; //Se ha creado un nuevo perfil
