@@ -84,8 +84,7 @@ const HTML_TABLERO = `<form id="formulario" class="configTablero" method="post">
 var juego = new Juego();
 
 //INICIALIZACION DE FORMULARIOS
-
-if (window.location.pathname === '/index.html') {
+if (document.title === 'PR3_Buscaminas') {
     //Asignaremos nombre al "index.html" para facilitar la movilidad entre ventanas
     window.name = "formulario";
     //Abrira nueva pestaña para registrarse o iniciar sesion, si no hay usuario logeado.
@@ -119,7 +118,7 @@ if (window.location.pathname === '/index.html') {
     });
 }
 
-if (window.location.pathname === '/formulario.html') {
+if (document.title === 'Formulario') {
     if (opener === null || opener.name === null) {
         alert(`NO SE HA PODIDO CARGAR EL FORMULARIO. POR FAVOR, ENTRA DESDE EL LA PAGINA PRINCIPAL "INDEX.HTML"`);
         window.close();
