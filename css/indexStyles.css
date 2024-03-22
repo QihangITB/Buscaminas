@@ -112,6 +112,10 @@ button{
     background-color: #a80000ce;
 }
 
+#reiniciar{
+    background-color: #d1a206e3;
+}
+
 #cambiar{
     background-color: #01b901c4;
 }
@@ -127,4 +131,8 @@ button:hover{
 
 #cambiar:hover{
     background-color: #48ff48ab;
+}
+
+#reiniciar:hover{
+    background-color: #e2ca2dda;
 }

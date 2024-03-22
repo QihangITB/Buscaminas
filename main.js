@@ -189,6 +189,8 @@ function menuFormularioTablero() {
 }
 
 function iniciarJuego() {
+    console.log(juego.jugador);
+    console.log(juego.tablero);
     //Mostramos primero el mensaje de saludo
     let elementoSaludo = document.getElementById('saludo');
     juego.saludarJugador(elementoSaludo);
@@ -221,20 +223,28 @@ function iniciarJuego() {
     tablero.addEventListener('contextmenu', clickDerecho);
     
 
-    //FUNCIONALIDADE EXTRA: BOTON REINICIAR
+    //FUNCIONALIDADE EXTRA: BOTON DE REINICIAR EL JUEGO 
     var botonReiniciar = document.getElementById('reiniciar');
     botonReiniciar.addEventListener('click', function () {
         //Eliminamos los eventos de click para evitar que se siga jugando
         tablero.removeEventListener('click', clickIzquierdo);
         tablero.removeEventListener('contextmenu', clickDerecho);
-        /*Al reiniciar el tablero, guardamos el usuario para luego buscarlo en la nueva ventana
+        iniciarJuego();
+    });
+
+    //FUNCIONALIDADE EXTRA: BOTON DE CONFIGURAR TABLERO
+    var botonConfigurar = document.getElementById('config');
+    botonConfigurar.addEventListener('click', function () {
+        tablero.removeEventListener('click', clickIzquierdo);
+        tablero.removeEventListener('contextmenu', clickDerecho);
+        /*Al volver a configurar el tablero, guardamos el usuario para luego buscarlo en la nueva ventana
         Con el metodo de postMessage() no me detectaba el mensaje, por eso he optado por guardar 
-        el nick en el window.name, de esta manera lo puedo conseguir con el opener.name.*/
+        el nick en el window.name, de esta manera puedo conseguir el usuario con el opener.name.*/
         window.name = juego.jugador.nick;
         Juego.abrirFormulario();
     });
 
-    //FUNCIONALIDADE EXTRA: BOTON ELIMINAR LA CUENTA ACTUAl
+    //FUNCIONALIDADE EXTRA: BOTON DE CAMBIAR A OTRA CUENTA
     var botonCambiar = document.getElementById('cambiar');
     botonCambiar.addEventListener('click', function () {
         tablero.removeEventListener('click', clickIzquierdo);
