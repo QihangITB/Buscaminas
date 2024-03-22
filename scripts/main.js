@@ -189,8 +189,6 @@ function menuFormularioTablero() {
 }
 
 function iniciarJuego() {
-    console.log(juego.jugador);
-    console.log(juego.tablero);
     //Mostramos primero el mensaje de saludo
     let elementoSaludo = document.getElementById('saludo');
     juego.saludarJugador(elementoSaludo);
